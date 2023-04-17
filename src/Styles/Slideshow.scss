@@ -1,0 +1,13 @@
+.slideshow-container {
+    display: block;
+    width: 100%;
+}
+
+.slideshow {
+       
+    //.slideshow-slide
+    &-slide {
+        width: 100%;
+        text-align: center;
+    }
+}
