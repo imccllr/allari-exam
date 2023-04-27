@@ -33,10 +33,12 @@
         font-family: monospace;
         font-style: italic;
         overflow: scroll;
+        margin-bottom: $general-margin;
+        min-height: 250px;
 
         //.main-data-title
         &-title {
-            font-size: 16px;
+            font-size: $extra-small-font;
             margin-bottom: $general-margin;
         }
     }

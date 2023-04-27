@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import RippleButton from './RippleButton';
 import '../Styles/Main.scss';
 
 const Main = () => {
-    const [data, setData] = useState({});
+    const [data, setData] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    async function fetchData() {
+        setIsLoaded(false);
+        const response = await fetch("https://jsonplaceholder.typicode.com/users");
+        const jsonData = await response.json();
+        setIsLoaded(true);
+        setData(jsonData);
+    }
 
     useEffect(() => {
-        async function fetchData() {
-            const response = await fetch("https://jsonplaceholder.typicode.com/users");
-            const jsonData = await response.json();
-            setData(jsonData);
-        }
-
         fetchData();
-    }, []);
+    }, [])
 
     return (
         <div className="main">
@@ -32,8 +36,19 @@ const Main = () => {
             </h3>
             <div className="main-data">
                 <div className="main-data-title">Data from API:</div>
-                {JSON.stringify(data)}
+                {isLoaded === false ? "Please wait" : (
+                    <ul>
+                        {data.map((item) => (
+                            <li key={item.id} >
+                                <b>User name</b>: {item.username} |
+                                <b>Full name</b>: {item.name} |
+                                <b>Email</b>: {item.email}
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
+            <RippleButton handleClick={fetchData}/>
         </div>
     );
 }

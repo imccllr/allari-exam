@@ -1,4 +1,6 @@
+@import './variables.scss';
+
 .name {
-    font-size: 30px;
+    font-size: $medium-font;
     color: white;
 }

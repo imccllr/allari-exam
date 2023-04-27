@@ -1,0 +1,52 @@
+@import './variables.scss';
+
+.ripple-button {
+    border-radius: 4px;
+    border: none;
+    margin: 0 auto;
+    padding: 14px 24px;
+    background: $gray;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: block;
+
+    //.ripple-button .ripple
+    & .ripple {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        background: $medium-gray;
+        display: block;
+        content: "";
+        border-radius: 9999px;
+        opacity: 1;
+        animation: 0.9s ease 1 forwards ripple-effect;
+    }
+
+    //.ripple-button .content 
+    & .content {
+        font-size: $small-font;
+        font-family: 'Source Sans Pro', sans-serif;
+        position: relative;
+        z-index: 2;
+    }
+}
+
+@keyframes ripple-effect {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(10);
+        opacity: 0.375;
+    }
+
+    100% {
+        transform: scale(35);
+        opacity: 0;
+    }
+}
